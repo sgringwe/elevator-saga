@@ -7,6 +7,8 @@
   //  destinationQueue
 
     init: function(elevators, floors) {
+        currentElevator = 0
+
         for (i = 0; i < elevators.length; ++i) {
             var elevator = elevators[i]; // Let's use the first elevator
 
@@ -17,8 +19,8 @@
             });
 
             elevator.on("floor_button_pressed", function(floorNum) {
-                console.log("floor_button_pressed", floorNum);
-                elevator.goToFloor(floorNum);
+                currentElevator = currentElevator == 0 ? 1 : 0;
+                elevators[currentElevator].goToFloor(floorNum);
             } );
         }
 
